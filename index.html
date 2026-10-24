@@ -690,8 +690,8 @@ function boiledFig(x,y,s,fl,t,arm,hit){
 function entDraw(en,cx){boiledFig(en.x-cx,GY,.78,en.x>P.x?-1:1,time,0,0)}
 
 /* --- cutscenes --- */
-let CUTL=null,cDur=15,cI=0,cB=null;
-function startCuts(L,dur,cb){CUTL=L;cDur=dur;cI=0;cB=cb;st='cut';tt=0;dlg.style.display='none';sub.style.opacity=0;btn(null);ev={};mus=L.mus||'slow';slowK=L.sk||0}
+let CUTL=null,cDur=30,cI=0,cB=null;
+function startCuts(L,dur,cb){CUTL=L;cDur=30;cI=0;cB=cb;st='cut';tt=0;dlg.style.display='none';sub.style.opacity=0;btn(null);ev={};mus=L.mus||'slow';slowK=L.sk||0}
 function nextCut(){if(st!=='cut')return;cI++;tt=0;if(cI>=CUTL.length){const f=cB;cB=null;mus='none';f&&f()}}
 function skipCuts(){if(st!=='cut')return;cI=CUTL.length-1;nextCut()}
 function wrap(txt,x,y,mw,lh){const w=txt.split(' ');let l='';for(const a of w){const t=l?l+' '+a:a;if(X.measureText(t).width>mw&&l){X.fillText(l,x,y);y+=lh;l=a}else l=t}X.fillText(l,x,y);return y+lh}
