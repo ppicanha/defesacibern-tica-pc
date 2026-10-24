@@ -48,6 +48,7 @@ a.btn{text-decoration:none}
 <label><input type="checkbox" id="sf"> Reduzir flashes e volume</label>
 <div class="btn" id="go">INICIAR (Enter)</div>
 <a id="alt" class="btn alt" target="_blank" rel="noopener"></a>
+<button id="fullscreenBtn" class="btn">TELA CHEIA ⛶</button>
 <p class="s" id="ctl"></p></div>
 </div>
 <div id="rot">Gire o celular para o modo paisagem.</div>
@@ -610,7 +611,7 @@ function drawFin(){
 }
 
 /* ===== v5: áudio real, cutscenes, entidade macabra, boss final ===== */
-const MODE='pc',OTHER='https://claude.ai/artifact/WUpw2aAPvSBxEtgy1JBo56';
+const MODE='pc',OTHER='https://defesacibernetica-celular.vercel.app/';
 let crashNext='dark';
 document.body.className=MODE;
 (()=>{const a=$('alt');if(a){a.textContent=MODE==='pc'?'VERSÃO PARA CELULAR →':'VERSÃO PARA PC →';if(OTHER)a.href=OTHER;else a.style.display='none'}
@@ -868,6 +869,15 @@ let last=performance.now();
 function loop(t){const dt=Math.min(.05,(t-last)/1000);last=t;update(dt);draw();requestAnimationFrame(loop)}
 P=newP(3);requestAnimationFrame(loop);
 })();
+document.getElementById('fullscreenBtn')?.addEventListener('click', async () => {
+  try {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen();
+    }
+  } catch (error) {
+    console.error('Não foi possível entrar em tela cheia:', error);
+  }
+});
 </script>
 </body>
 </html>
